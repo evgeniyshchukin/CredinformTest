@@ -19,6 +19,7 @@
 		"autoprefixer": "^7.1.2",
 		"cssnano": "^3.10.0",
 		"postcss-cssnext": "^3.0.2",
-		"postcss-import": "^10.0.0"
+		"postcss-import": "^10.0.0",
+		"precss": "^2.0.0"
 	}
 }
