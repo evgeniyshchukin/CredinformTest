@@ -1,0 +1,96 @@
+﻿@using System.Web.Optimization;
+@using System.Web.Mvc;
+@using System.Web.Routing;
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>@ViewBag.Title</title>
+		@Scripts.Render(
+			"~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "JS"
+		)
+		@Styles.Render(
+			"~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "CSS"
+		)
+</head>
+<body>
+	<header>
+		<section>
+			<div>
+				<p>Всего копмпаний и ИП: 24 326 788</p>
+			</div>
+			<div>
+				<p>Новых за месяц: 94 785</p>
+			</div>
+			<div>
+				<p>Ликвидированных: 6 515 949</p>
+			</div>
+		</section>
+		<section>
+			<section>
+				<div>
+					Лого
+				</div>
+			</section>
+			<section>
+				<h2>Поиск по строке</h2>
+				<div>
+					<form>
+						<div>
+							<div>
+								<label>Ввод данных поиска</label>
+								<input type="text" placeholder="Введите наименование, ИНН, ОГРН, адрес, ФИО или другие данные" />
+							</div>
+							<div>
+								<label>Выбор страны</label>
+								<select>
+									<optgroup label="Глобас">
+										<option>Россия</option>
+									</optgroup>
+									<optgroup label="Орбис">
+										<option>Австралия</option>
+									</optgroup>
+								</select>
+							</div>
+							<div>
+								<button type="submit">Поиск</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+			<section>
+				<h2>Фильтры</h2>
+				<a href="#">
+					<div></div>
+					<p>Фильтры</p>
+				</a>
+			</section>
+			<section>
+				<h2>Меню пользователя</h2>
+				<div></div>
+				<div></div>
+				<div>
+					<ul class="list">
+						<li>История действий</li>
+						<li>Подписка</li>
+						<li>Настройки</li>
+						<li>Помощь</li>
+						<li>Выход</li>
+					</ul>
+				</div>
+			</section>
+		</section>		
+	</header>
+
+	@RenderBody()
+
+	<footer>
+		<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+	</footer>
+
+</body>
+</html>
+

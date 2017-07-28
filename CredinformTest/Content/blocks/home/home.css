@@ -1,0 +1,7 @@
+﻿body {
+    background: #ada;
+}
+.list {
+    display: flex;
+    width: calc(20px + 20px);
+}
