@@ -12,5 +12,8 @@
         'cssnano': {},
         'css-mqpacker': {},
         'csscomb': {},
+        'stylelint': {
+            failAfterError: true
+        }
     },
 };

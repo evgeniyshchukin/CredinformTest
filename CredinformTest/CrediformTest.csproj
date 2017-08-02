@@ -119,7 +119,18 @@
     <Content Include="Content\blocks\common\header\header.js" />
     <Content Include="Content\blocks\home\home.css" />
     <Content Include="Content\blocks\home\home.js" />
+    <Content Include="Content\img\jpg\events__credinform.png" />
+    <Content Include="Content\img\png\active.png" />
+    <Content Include="Content\img\png\cart_icon.png" />
+    <Content Include="Content\img\png\checkbox_off.png.png" />
+    <Content Include="Content\img\png\checkbox_on.png.png" />
+    <Content Include="Content\img\png\close_cross.png" />
+    <Content Include="Content\img\svg\icon-editor-crop-pink.svg" />
+    <Content Include="Content\img\svg\icon-editor-fill-pink.svg" />
+    <Content Include="Content\img\svg\icon-editor-fill.svg" />
     <Content Include="Global.asax" />
+    <Content Include="gulpfile.js" />
+    <Content Include="Images\png\sprite.css" />
     <Content Include="postcss.config.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -144,6 +155,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include=".htmlhintrc" />
+    <Content Include=".stylelintrc" />
+    <Content Include="package-lock.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -157,14 +171,10 @@
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\img\gif\" />
     <Folder Include="Content\img\ico\" />
-    <Folder Include="Content\img\jpg\" />
-    <Folder Include="Content\img\png\" />
-    <Folder Include="Content\img\svg\" />
     <Folder Include="Fonts\" />
     <Folder Include="Images\gif\" />
     <Folder Include="Images\ico\" />
     <Folder Include="Images\jpg\" />
-    <Folder Include="Images\png\" />
     <Folder Include="Images\svg\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
