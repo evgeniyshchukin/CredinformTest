@@ -3,6 +3,7 @@
         'postcss-import': {},
         'precss': {},
         //'postcss-sass': {},
+        'postcss-simple-vars': {},
         'postcss-cssnext': {
             browsers: ['last 2 versions', '> 5%'],
         },

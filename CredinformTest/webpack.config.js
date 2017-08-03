@@ -4,9 +4,8 @@ const
 	webpack = require('webpack'),
 	BrowserSync = require('browser-sync-webpack-plugin'),
     merge = require('webpack-merge'),
-    validator = require('webpack-validator'),
     PostCss = require('postcss-loader'),
-    HtmlPlugin = require('html-webpack-plugin'),
+    ImageminPlugin = require('imagemin-webpack-plugin'),
     SpritesmithPlugin = require('webpack-spritesmith'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	environment = process.env.NODE_ENV,
@@ -63,11 +62,11 @@ const main = {
 		path: path.resolve(__dirname, ''),
 		filename: 'Scripts/[name].js'
 	},
-	module: {
-		rules: [
-			{
+    module: {
+        rules: [
+            {
                 test: /\.css$/,
-				use: ExtractTextPlugin.extract(
+                use: ExtractTextPlugin.extract(
                     {
                         fallback: 'style-loader',
                         use: [{
@@ -76,27 +75,24 @@ const main = {
                         },
                             'postcss-loader',]
                     }
-				)
+                )
             },
+        
             {
                 test: /\.png$/, loaders: [
                     'file-loader?name=i/[hash].[ext]'
                 ]
             },
+          
             {
-                test: /\.svg?$/,
-                loader: 'svg-sprite!svgo',
-                include: path.resolve('.Content/img/svg/*.svg')
-            },
-            {
-                test: /\.html/,
-                loader: 'htmlhint-loader',
-                exclude: /node_modules/,
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                include: path.resolve('Content/img/svg/'),
                 options: {
-                    configFile: './.htmlhintrc'
+                    extract: true,
+                    spriteFilename: 'Images/svg/sprite.svg'
                 }
             }
-        
 		]
 	},
 	plugins: [
@@ -111,14 +107,13 @@ const main = {
 			},
 			allChunks: true
         }),
-
         new SpritesmithPlugin({
             src: {
                 cwd: path.resolve(__dirname, 'Content/img/png/*.png'),
                 glob: 'Content/img/*.png'
             },
             target: {
-                image: path.resolve(__dirname, 'sprite.png'),
+                image: path.resolve(__dirname, 'images/png/sprite.png'),
                 css: path.resolve(__dirname, 'images/png/sprite.css')
             },
             apiOptions: {

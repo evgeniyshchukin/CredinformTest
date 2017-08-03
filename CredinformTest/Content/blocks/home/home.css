@@ -4,6 +4,7 @@
 body {
     background: $color-gray--dark;  
     max-width: calc(300px + 10px);
+   
 }
 
 .list {

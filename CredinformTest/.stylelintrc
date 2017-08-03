@@ -3,7 +3,7 @@
   "block-no-empty": true,
   "color-no-invalid-hex": true,
   "declaration-block-no-duplicate-properties": true,
-  "declaration-colon-space-after": "always",
+  "declaration-colon-space-after": "never",
   "declaration-colon-space-before": "never",
   "function-comma-space-after": "always",
   "function-url-quotes": "always",
