@@ -4,8 +4,6 @@ var gulp = require('gulp');
 var doiuse = require('doiuse');
 var htmlhint = require('gulp-htmlhint');
 var stylelint = require('gulp-stylelint');
-var svgstore = require('gulp-svgstore');
-var svgmin = require('gulp-svgmin');
 var reporter = require('postcss-reporter');
 
 
@@ -15,6 +13,8 @@ gulp.task('htmlhint', function () {
       .pipe(htmlhint('.htmlhintrc'))                             //валидатор
       .pipe(htmlhint.reporter());
 });
+
+
 
 //gulp.task('symbols', function () {
 //    return gulp.src('Content/img/*.svg')           //сборка свг спрайтов
