@@ -8,7 +8,8 @@ const
     merge = require('webpack-merge'),
     PostCss = require('postcss-loader'), 
     SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
-    ImageminPlugin = require('imagemin-webpack-plugin'),
+    //ImageminPlugin = require('imagemin-webpack-plugin'),
+    ImageLoader = require('image-webpack-loader'),
     CopyWebpackPlugin = require('copy-webpack-plugin'),
     SpritesmithPlugin = require('webpack-spritesmith'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -83,16 +84,33 @@ const main = {
                     }
                 )
             },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                loaders: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        query: {
+                            progressive: true,           
+                            optimizationLevel: 3,
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            }
+                        }
 
+                    }
+                ]
+
+            },
             {
                 test: /\.png$/, loaders: [
                     'file-loader?name=i/[hash].[ext]'
                 ]
             }
-
-
         ]
     },
+
     plugins: [
         new BrowserSync({
             host: '192.168.1.177',
@@ -105,17 +123,14 @@ const main = {
             },
             allChunks: true
         }),
-        new ImageminPlugin({
-            test: 'Content/img/png/*.jpg',
-            optipng: {
-                optimizationLevel: 3 
-            }
-        }),
+   
         new CopyWebpackPlugin([
             {
-                from: 'Content/img/jpg/*jpg',
-                to: 'images/jpg/*jpg'
+                from: '/Content/img/jpg/*.jpg',
+                to: '/images/jpg/*.jpg',
+                toType: 'dir'
             }
+            
         ]),
     
         new SvgSpritePlugin({ filename: 'Images/svg/sprite.svg' }),
