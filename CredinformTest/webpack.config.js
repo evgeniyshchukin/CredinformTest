@@ -6,9 +6,10 @@ const
     webpack = require('webpack'),
     BrowserSync = require('browser-sync-webpack-plugin'),
     merge = require('webpack-merge'),
-    PostCss = require('postcss-loader'),
+    PostCss = require('postcss-loader'), 
     SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
     ImageminPlugin = require('imagemin-webpack-plugin'),
+    CopyWebpackPlugin = require('copy-webpack-plugin'),
     SpritesmithPlugin = require('webpack-spritesmith'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     environment = process.env.NODE_ENV,
@@ -52,7 +53,7 @@ switch (environment) {
                 {},
                 main
             );
-        }
+        };
         break;
     default:
         break;
@@ -87,9 +88,8 @@ const main = {
                 test: /\.png$/, loaders: [
                     'file-loader?name=i/[hash].[ext]'
                 ]
-            },
-     
-           
+            }
+
 
         ]
     },
@@ -105,6 +105,19 @@ const main = {
             },
             allChunks: true
         }),
+        new ImageminPlugin({
+            test: 'Content/img/png/*.jpg',
+            optipng: {
+                optimizationLevel: 3 
+            }
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: 'Content/img/jpg/*jpg',
+                to: 'images/jpg/*jpg'
+            }
+        ]),
+    
         new SvgSpritePlugin({ filename: 'Images/svg/sprite.svg' }),
         new SpritesmithPlugin({
             src: {
