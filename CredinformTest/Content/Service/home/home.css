@@ -1,19 +1,24 @@
-﻿@import "../common/colors.css";
+﻿@import "../../Common/colors.css";
 
 
 body {
-    background: $color-gray--dark;
-    max-width: calc(300px + 10px);
-
-    
+	background: $color-gray--dark;
+	max-width: calc(300px + 10px);
 }
 
 .list {
-    display: flex;
-    width: calc(20px + 30px);
+	display: flex;
+	width: calc(20px + 30px);
 }
 
 .main-section {
-    background: red;
- 
+	background: red;
+
+	h2 {
+			 color: yellow;
+
+			 &:hover {
+									color: blue;
+								}
+		 }
 }
