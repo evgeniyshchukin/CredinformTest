@@ -1,5 +1,4 @@
-﻿import styles from 'Content/service/home/home.css';
-
+﻿import styles from './home.css';
 
 
 console.log(`Hey.`);
