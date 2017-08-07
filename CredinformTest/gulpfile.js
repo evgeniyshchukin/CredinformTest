@@ -10,9 +10,9 @@ var run = require('run-sequence');
 
 
 gulp.task('webpack', function () {
-    return gulp.src('Content/blocks/home/')
+    return gulp.src('Content/blocks/home/home.js')
         .pipe(webpack())
-        .pipe(gulp.dest('Scripts/home.js'));
+        .pipe(gulp.dest('Scripts/'));
 });
 
 gulp.task('htmlhint', function () {
