@@ -3,21 +3,43 @@
 var gulp = require('gulp');
 var doiuse = require('doiuse');
 var htmlhint = require('gulp-htmlhint');
+var webpack = require('gulp-webpack');
 var stylelint = require('gulp-stylelint');
 var reporter = require('postcss-reporter');
+var run = require('run-sequence');
 
 
+gulp.task('webpack', function () {
+    return gulp.src('Content/blocks/home/')
+        .pipe(webpack())
+        .pipe(gulp.dest('Scripts/home.js'));
+});
 
 gulp.task('htmlhint', function () {
     return gulp.src('Views/*.cshtml')
-      .pipe(htmlhint('.htmlhintrc'))                             //валидатор
       .pipe(htmlhint.reporter());
 });
 
+gulp.task('stylelint', function () {
+    return gulp.src('css/*.css')
+        .pipe(stylelint({                                      //проверка стилевых файлов
+            reporters: [
+                { formatter: 'string', console: true }          //оповещение об ошибках в окне ошибок
+            ]
+        }));
+});
 
 
+gulp.task("build", function (fn) {                          //порядок выполнения задач
+    run(
+        "stylelint",
+        "htmlhint",
+        "webpack",
+        fn
+    );
+});
 //gulp.task('symbols', function () {
-//    return gulp.src('Content/img/*.svg')           //сборка свг спрайтов
+//    return gulp.src('Content/img/*.svg')           
 //        .pipe(svgmin())
 //        .pipe(svgstore({
 //            inlineSvg: true
@@ -27,14 +49,7 @@ gulp.task('htmlhint', function () {
 //});
 
 
-//gulp.task('stylelint', function () {
-//    return gulp.src('Content/blocks/*.css')
-//        .pipe(stylelint({                                      //проверка стилевых файлов
-//            reporters: [
-//                { formatter: 'string', console: true }          //оповещение об ошибках в окне ошибок
-//            ]
-//        }));
-//});
+
 
 
 // gulp.task('bemlinter', function () {

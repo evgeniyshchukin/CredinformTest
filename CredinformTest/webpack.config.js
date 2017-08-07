@@ -110,6 +110,10 @@ const main = {
             }
         ]
     },
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 300
+    },
 
     plugins: [
         new BrowserSync({
