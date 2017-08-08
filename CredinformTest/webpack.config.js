@@ -67,7 +67,8 @@ const main = {
 		},
 		output: {
 				path: path.resolve(__dirname, ''),
-				filename: 'Scripts/[name].js'
+                filename: 'Scripts/[name].js',
+                publicPath: path.resolve(__dirname, '')
 		},
 		module: {
 				rules: [
@@ -84,30 +85,42 @@ const main = {
 										}
 								)
 						},
-						{
-								test: /\.(gif|png|jpe?g|svg)$/i,
-								loaders: [
-										'file-loader',
-										{
-												loader: 'image-webpack-loader',
-												query: {
-														progressive: true,           
-														optimizationLevel: 3,
-														pngquant: {
-																quality: '65-90',
-																speed: 4
-														}
-												}
+						//{
+						//		test: /\.(gif|png|jpe?g|svg)$/i,
+						//		loaders: [
+						//				'file-loader',
+						//				{
+						//						loader: 'image-webpack-loader',
+						//						query: {
+						//								progressive: true,           
+						//								optimizationLevel: 3,
+						//								pngquant: {
+						//										quality: '65-90',
+						//										speed: 4
+						//								}
+						//						}
 
-										}
-								]
+						//				}
+						//		]
 
-						},
+						//},
 						{
 								test: /\.png$/, loaders: [
 										'file-loader?name=i/[hash].[ext]'
 								]
-						}
+                        },
+                        
+                          
+                           {
+                               test: /\.(png|jpg|gif)$/i,
+                               use: ['file-loader?name=/Content/img/[name].[ext]&outputPath=Images/jpg/&publicPath=Images/jpg',
+                                  'image-webpack-loader'
+                              ]
+                          }
+
+                        
+                        
+
 				]
 		},
 		watch: true,
@@ -128,14 +141,14 @@ const main = {
 						allChunks: true
 				}),
 	 
-				new CopyWebpackPlugin([
-						{
-								from: '/Content/img/jpg/*.jpg',
-								to: '/Images/jpg/*.jpg',
-								toType: 'dir'
-						}
+				//new CopyWebpackPlugin([
+				//		{
+    //                    from: 'Content/img',
+    //                            to: 'Images'
+								
+				//		}
 						
-				]),
+				//]),
 				new SpritesmithPlugin({
 						src: {
 								cwd: path.resolve(__dirname, 'Content/img/png'),
