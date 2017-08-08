@@ -115,11 +115,14 @@
     <Content Include="Content\Common\libraries\popups\popups.js" />
     <Content Include="Content\Common\libraries\utils\utils.js" />
     <Content Include="Content\Common\mixins.css" />
-    <Content Include="Content\img\png\active.png" />
-    <Content Include="Content\img\png\cart_icon.png" />
-    <Content Include="Content\img\png\checkbox_off.png.png" />
-    <Content Include="Content\img\png\checkbox_on.png.png" />
-    <Content Include="Content\img\png\close_cross.png" />
+    <Content Include="Content\img\jpg\ghfgh.jpg" />
+    <Content Include="Content\img\jpg\image1.jpg" />
+    <Content Include="Content\img\png\image2.png" />
+    <Content Include="Content\img\png\sprite\active.png" />
+    <Content Include="Content\img\png\sprite\cart_icon.png" />
+    <Content Include="Content\img\png\sprite\checkbox_off.png.png" />
+    <Content Include="Content\img\png\sprite\checkbox_on.png.png" />
+    <Content Include="Content\img\png\sprite\close_cross.png" />
     <Content Include="Content\img\svg\icon-editor-crop-pink.svg" />
     <Content Include="Content\img\svg\icon-editor-fill-pink.svg" />
     <Content Include="Content\img\svg\icon-editor-fill.svg" />
@@ -167,7 +170,6 @@
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\img\gif\" />
     <Folder Include="Content\img\ico\" />
-    <Folder Include="Content\img\jpg\" />
     <Folder Include="Fonts\" />
     <Folder Include="Images\gif\" />
     <Folder Include="Images\ico\" />

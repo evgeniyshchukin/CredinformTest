@@ -9,35 +9,24 @@ var reporter = require('postcss-reporter');
 var run = require('run-sequence');
 
 
-gulp.task('webpack', function () {
-    return gulp.src('Content/blocks/home/home.js')
-        .pipe(webpack())
-        .pipe(gulp.dest('Scripts/'));
-});
+
 
 gulp.task('htmlhint', function () {
     return gulp.src('Views/*.cshtml')
       .pipe(htmlhint.reporter());
 });
 
-gulp.task('stylelint', function () {
-    return gulp.src('css/*.css')
-        .pipe(stylelint({                                      //проверка стилевых файлов
-            reporters: [
-                { formatter: 'string', console: true }          //оповещение об ошибках в окне ошибок
-            ]
-        }));
-});
+//gulp.task('stylelint', function () {
+//    return gulp.src('css/*.css')
+//        .pipe(stylelint({                                      //проверка стилевых файлов
+//            reporters: [
+//                { formatter: 'string', console: true }          //оповещение об ошибках в окне ошибок
+//            ]
+//        }));
+//});
 
 
-gulp.task("build", function (fn) {                          //порядок выполнения задач
-    run(
-        "stylelint",
-        "htmlhint",
-        "webpack",
-        fn
-    );
-});
+
 //gulp.task('symbols', function () {
 //    return gulp.src('Content/img/*.svg')           
 //        .pipe(svgmin())

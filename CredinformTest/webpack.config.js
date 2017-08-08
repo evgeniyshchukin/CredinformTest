@@ -8,7 +8,6 @@ const
 		merge = require('webpack-merge'),
 		PostCss = require('postcss-loader'), 
 		SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
-		//ImageminPlugin = require('imagemin-webpack-plugin'),
 		ImageLoader = require('image-webpack-loader'),
 		CopyWebpackPlugin = require('copy-webpack-plugin'),
 		SpritesmithPlugin = require('webpack-spritesmith'),
@@ -63,12 +62,12 @@ switch (environment) {
 const main = {
 		context: path.resolve(__dirname, 'Content/Service'),
 		entry: {
-				home: addresses.home.JS
+            home: addresses.home.JS
 		},
 		output: {
 				path: path.resolve(__dirname, ''),
                 filename: 'Scripts/[name].js',
-                publicPath: path.resolve(__dirname, '')
+           
 		},
 		module: {
 				rules: [
@@ -85,41 +84,29 @@ const main = {
 										}
 								)
 						},
-						//{
-						//		test: /\.(gif|png|jpe?g|svg)$/i,
-						//		loaders: [
-						//				'file-loader',
-						//				{
-						//						loader: 'image-webpack-loader',
-						//						query: {
-						//								progressive: true,           
-						//								optimizationLevel: 3,
-						//								pngquant: {
-						//										quality: '65-90',
-						//										speed: 4
-						//								}
-						//						}
-
-						//				}
-						//		]
-
-						//},
+				
 						{
-								test: /\.png$/, loaders: [
-										'file-loader?name=i/[hash].[ext]'
-								]
-                        },
-                        
-                          
-                           {
-                               test: /\.(png|jpg|gif)$/i,
-                               use: ['file-loader?name=/Content/img/[name].[ext]&outputPath=Images/jpg/&publicPath=Images/jpg',
-                                  'image-webpack-loader'
-                              ]
-                          }
+                            test: /\.(png|jpg|gif)$/i,
+                            loaders: [
+                                'file-loader?name =i/[hash].[ext]',
+                                {
+                                    loader: 'image-webpack-loader',
+                                    query: {
+                                        progressive: true,
+                                        optimizationLevel: 3,                                    
+                                        pngquant: {
+                                            quality: '65-90',
+                                            speed: 4
+                                        },
+                                        svgo: {},
 
+                                    }
+                                }
+                            ]
+
+                        }
                         
-                        
+                                   
 
 				]
 		},
@@ -141,26 +128,32 @@ const main = {
 						allChunks: true
 				}),
 	 
-				//new CopyWebpackPlugin([
-				//		{
-    //                    from: 'Content/img',
-    //                            to: 'Images'
-								
-				//		}
+				new CopyWebpackPlugin([
+                    {
+                        from: path.resolve(__dirname, 'Content/img/jpg/*.jpg'),
+                        to: path.resolve(__dirname, 'Images/jpg/[name].jpg'),
+                      
+                    },
+                    {
+                        from: path.resolve(__dirname, 'Content/img/png/*.png'),
+                        to: path.resolve(__dirname, 'Images/png/[name].png'),
+                     
+                    }
 						
-				//]),
+				]),
 				new SpritesmithPlugin({
 						src: {
-								cwd: path.resolve(__dirname, 'Content/img/png'),
+								cwd: path.resolve(__dirname, 'Content/img/png/sprite'),
 								glob: '**/*.png'
 						},
 						target: {
-								image: path.resolve(__dirname, 'Images/png/sprite.png'),
-								css: path.resolve(__dirname, 'Images/png/sprite.css')
+								image: path.resolve(__dirname, 'Images/png/sprite/sprite.png'),
+                                css: path.resolve(__dirname, 'Images/png/sprite/sprite.css')
 						},
 						apiOptions: {
 								cssImageRef: "~sprite.png"
 						}
 				})
-		]
+        ]
+
 };
