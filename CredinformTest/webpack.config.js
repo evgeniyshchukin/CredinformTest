@@ -83,7 +83,7 @@ const main = {
                                 loader: 'css-loader', 
                                 options: { importLoaders: 1, minimize: true}
                             },
-                                'csscomb-loader','postcss-loader' ]
+                                'postcss-loader']
                         }
                     )
                 },
@@ -108,7 +108,7 @@ const main = {
                     query: {
                         config: '.htmllintrc',
                         failOnError: true,
-                        failOnWarning: false
+                        failOnWarning: true
                     }
                 },
                 {
