@@ -96,21 +96,21 @@ const main = {
                             loader: 'image-webpack-loader',
                             query: {
                                 progressive: true,
-                                optimizationLevel: 3,
+                                optimizationLevel: 3
                             }
                         }
                     ]
                 },
-                //{
-                //    test: /\.(htm|html|cshtml)$/i,
-                //    loader: "htmllint-loader",
-                //    include: '_src/Views/',
-                //    query: {
-                //        config: '.htmllintrc',
-                //        failOnError: true,
-                //        failOnWarning: false,
-                //    }
-                //},
+                {
+                    test: /\.(htm|html|cshtml)$/i,
+                    loader: "htmllint-loader",
+                    include: '/Views/',
+                    query: {
+                        config: '.htmllintrc',
+                        failOnError: true,
+                        failOnWarning: false
+                    }
+                },
                 {
                     test: /\.svg$/,
                     loader: 'webpack-svg-sprite-plugin'
@@ -136,8 +136,7 @@ const main = {
                         return getPath('Styles/[name].css');
                     },
                     allChunks: true       
-				}),
-	 
+	            }),	 
                 new RemoveWebpackPlugin('./Fonts/'),
 				new SpritesmithPlugin({
 						src: {
