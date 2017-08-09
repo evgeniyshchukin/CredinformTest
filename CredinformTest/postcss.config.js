@@ -3,7 +3,7 @@
 				'postcss-import': {},
 				'precss': {},
 				//'postcss-sass': {},
-				'postcss-simple-vars': {},
+                'postcss-simple-vars': {},		
 				'stylelint': {
 					failAfterError: true
 				},
@@ -15,7 +15,7 @@
 				},
 				'cssnano': {},
 				'css-mqpacker': {},
-				'csscomb': {}
+			
 				
 		},
 };

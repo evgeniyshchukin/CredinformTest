@@ -7,8 +7,10 @@ const
 		BrowserSync = require('browser-sync-webpack-plugin'),
 		merge = require('webpack-merge'),
 		PostCss = require('postcss-loader'), 
-		SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
-		ImageLoader = require('image-webpack-loader'),
+        SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
+        //SvgSpritePlugin = require('svg-sprite-loader/plugin'),
+        ImageLoader = require('image-webpack-loader'),
+        RemoveWebpackPlugin = require('remove-webpack-plugin'),
 		CopyWebpackPlugin = require('copy-webpack-plugin'),
 		SpritesmithPlugin = require('webpack-spritesmith'),
 		ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -66,81 +68,77 @@ const main = {
 		},
 		output: {
 				path: path.resolve(__dirname, ''),
-                filename: 'Scripts/[name].js',
+                filename: 'Scripts/[name].js'
            
 		},
 		module: {
-				rules: [
-						{
-								test: /\.css$/,
-								use: ExtractTextPlugin.extract(
-										{
-												fallback: 'style-loader',
-												use: [{
-														loader: 'css-loader',
-														options: { importLoaders: 1 }
-												},
-														'postcss-loader']
-										}
-								)
-						},
-				
-						{
-                            test: /\.(png|jpg|gif)$/i,
-                            loaders: [
-                                'file-loader?name =i/[hash].[ext]',
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract(
+                        {
+                            fallback: 'style-loader',
+                            use: [
                                 {
-                                    loader: 'image-webpack-loader',
-                                    query: {
-                                        progressive: true,
-                                        optimizationLevel: 3,                                    
-                                        pngquant: {
-                                            quality: '65-90',
-                                            speed: 4
-                                        },
-                                        svgo: {},
-
-                                    }
-                                }
-                            ]
-
+                                loader: 'css-loader', 
+                                options: { importLoaders: 1, minimize: true}
+                            },
+                                'csscomb-loader','postcss-loader' ]
                         }
-                        
-                                   
+                    )
+                },
 
-				]
-		},
+                {
+                    test: /\.(png|jpg|gif)$/i,
+                    loaders: [
+                        'file-loader?name =i/[hash].[ext]',
+                        {
+                            loader: 'image-webpack-loader',
+                            query: {
+                                progressive: true,
+                                optimizationLevel: 3,
+                            }
+                        }
+                    ]
+                },
+                //{
+                //    test: /\.(htm|html|cshtml)$/i,
+                //    loader: "htmllint-loader",
+                //    include: '_src/Views/',
+                //    query: {
+                //        config: '.htmllintrc',
+                //        failOnError: true,
+                //        failOnWarning: false,
+                //    }
+                //},
+                {
+                    test: /\.svg$/,
+                    loader: 'webpack-svg-sprite-plugin'
+                    
+                    }
+                
+                            
+		]},
 		watch: true,
 		watchOptions: {
 				aggregateTimeout: 300
 		},
 
-		plugins: [
-				new BrowserSync({
-						host: '192.168.1.177',
-						port: 8082,
-						proxy: 'http://192.168.1.177:8082/'
-				}),
-				new ExtractTextPlugin({
-						filename: (getPath) => {
-								return getPath('Styles/[name].css');
-						},
-						allChunks: true
+        plugins: [
+            new BrowserSync({
+                host: '192.168.1.177',
+                port: 8082,
+                proxy: 'http://192.168.1.177:8082/'
+            }),
+            new ExtractTextPlugin({
+                    
+                    filename: (getPath) => {
+                        return getPath('Styles/[name].css');
+                    },
+                    allChunks: true       
 				}),
 	 
-				new CopyWebpackPlugin([
-                    {
-                        from: path.resolve(__dirname, 'Content/img/jpg/*.jpg'),
-                        to: path.resolve(__dirname, 'Images/jpg/[name].jpg'),
-                      
-                    },
-                    {
-                        from: path.resolve(__dirname, 'Content/img/png/*.png'),
-                        to: path.resolve(__dirname, 'Images/png/[name].png'),
-                     
-                    }
-						
-				]),
+                new RemoveWebpackPlugin('./Fonts/'),
 				new SpritesmithPlugin({
 						src: {
 								cwd: path.resolve(__dirname, 'Content/img/png/sprite'),
@@ -153,7 +151,30 @@ const main = {
 						apiOptions: {
 								cssImageRef: "~sprite.png"
 						}
-				})
+                }),
+                new CopyWebpackPlugin([
+                    {
+                        from: path.resolve(__dirname, 'Content/img/jpg/*.jpg'),
+                        to: path.resolve(__dirname, 'Images/jpg/[name].jpg')
+
+                    },
+                    {
+                        from: path.resolve(__dirname, 'Content/img/png/*.png'),
+                        to: path.resolve(__dirname, 'Images/png/[name].png')
+
+                    },
+                    {
+                        from: path.resolve(__dirname, 'Content/img/svg/*.svg'),
+                        to: path.resolve(__dirname, 'Images/svg/[name].svg')
+
+                    }
+
+                ]),
+                new SvgSpritePlugin({
+                    from: path.resolve(__dirname, 'Images/svg/'),                          
+                    filename: 'Images/svg/sprite.svg'
+                    
+                })
         ]
 
 };
