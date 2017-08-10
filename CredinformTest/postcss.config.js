@@ -6,6 +6,7 @@
                 'postcss-import': {},
                 'postcss-simple-vars': {},	
                 'css-mqpacker': {},
+                postcss-data - packer
                 'postcss-cssnext': {
                     browsers: ['last 2 versions', '> 5%']
                 },

@@ -154,9 +154,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include=".htmlhintrc" />
     <Content Include=".stylelintrc" />
     <Content Include="package-lock.json" />
+    <Content Include=".htmllintrc" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -40,6 +40,7 @@
 		"postcss-cssnext": "^3.0.2",
 		"postcss-data-packer": "^1.2.3",
 		"postcss-import": "^10.0.0",
+		"postcss-normalize": "^4.0.0",
 		"postcss-sass": "^0.2.0",
 		"postcss-scss": "^1.0.2",
 		"postcss-simple-vars": "^4.0.0",

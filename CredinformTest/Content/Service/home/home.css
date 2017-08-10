@@ -10,7 +10,7 @@ body {
 	display: flex;
 	width: calc(20px + 30px);
 }
-
+/*Это комментаррий*/
 .main-section {
 	background: red;
 
@@ -22,3 +22,4 @@ body {
 								}
 		 }
 }
+/*Это комментаррий*/
