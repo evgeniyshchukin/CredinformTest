@@ -1,24 +1,39 @@
 ﻿@import "../../Common/colors.css";
 
+@import-normalize;
 
-body {
-	background: $color-gray--dark;
-	max-width: calc(300px + 10px);
-}
-
-.list {
+.saf {
 	display: flex;
-	width: calc(20px + 30px);
+
+	color: $color-gray--darkest;
 }
 
-.main-section {
-	background: red;
+/* выфафы */
+.aaa {
+	color: $color-gray--darkest;
 
-	h2 {
-			 color: yellow;
+	& .bbb {
+		border-bottom: 1px;
 
-			 &:hover {
-									color: blue;
-								}
-		 }
+		& .cc {
+			width: 100rem;
+			width: 100px;
+			width: calc(2px + 4px);
+
+			transition: 500s;
+		}
+	}
+}
+
+.xxx,
+.yyy .zzz {
+	width: calc(2px + 4px);
+
+	background-image: url("http://www.asdf.com");
+}
+
+.eee {
+	display: flex;
+
+	color: $color-gray--darkest;
 }

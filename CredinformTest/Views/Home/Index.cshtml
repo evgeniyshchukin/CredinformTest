@@ -1,11 +1,11 @@
 ﻿@{
 	ViewBag.Title = "Начальная страница";
-	ViewBag.View = Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
 }
 
 <main>
 	<section class="main-section">
-		<h2>Тело страницыsadfasdf</h2>
+		<h2>Тело страницы</h2>
+		<a href="@Url.Action("index", "additional")">Доп. страница</a>
 	</section>
 </main>
 

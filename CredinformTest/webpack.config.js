@@ -1,12 +1,13 @@
 ﻿/// <binding ProjectOpened='Watch - Development, Run - Production, Run - Development' /> 
 
 'use strict';
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const
 		path = require('path'),
 		webpack = require('webpack'),
 		BrowserSync = require('browser-sync-webpack-plugin'),
 		merge = require('webpack-merge'),
-		PostCss = require('postcss-loader'), 
+		PostCss = require('postcss-loader'),
 		SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
 		//ImageminPlugin = require('imagemin-webpack-plugin'),
 		ImageLoader = require('image-webpack-loader'),
@@ -14,6 +15,7 @@ const
 		SpritesmithPlugin = require('webpack-spritesmith'),
 		ExtractTextPlugin = require('extract-text-webpack-plugin'),
 		environment = process.env.NODE_ENV,
+		HtmlWebpackPlugin = require('html-webpack-plugin'),
 		addresses = {
 				libraries: {
 						JS: [
@@ -37,6 +39,10 @@ const
 				home: {
 						JS: './home/home.js',
 						CSS: './home/home.css'
+				},
+				additional: {
+					JS: './additional/additional.js',
+					CSS: './additional/additional.css'
 				}
 		};
 
@@ -63,11 +69,13 @@ switch (environment) {
 const main = {
 		context: path.resolve(__dirname, 'Content/Service'),
 		entry: {
-				home: addresses.home.JS
+			home: addresses.home.JS,
+			additional: addresses.additional.JS
 		},
 		output: {
 				path: path.resolve(__dirname, ''),
-				filename: 'Scripts/[name].js'
+				filename: 'Scripts/[name].js',
+				publicPath: ''
 		},
 		module: {
 				rules: [
@@ -78,7 +86,7 @@ const main = {
 												fallback: 'style-loader',
 												use: [{
 														loader: 'css-loader',
-														options: { importLoaders: 1 }
+														options: {importLoaders: 1}
 												},
 														'postcss-loader']
 										}
@@ -107,7 +115,16 @@ const main = {
 								test: /\.png$/, loaders: [
 										'file-loader?name=i/[hash].[ext]'
 								]
-						}
+						},
+						{
+							test: /\.svg$/,
+							loader: 'svg-sprite-loader',
+							include: path.resolve(__dirname, 'Content/img/svg'),
+							options: {
+								extract: true,
+								spriteFilename: 'sprite.svg'
+							}
+						}  
 				]
 		},
 		watch: true,
@@ -127,7 +144,6 @@ const main = {
 						},
 						allChunks: true
 				}),
-	 
 				new CopyWebpackPlugin([
 						{
 								from: '/Content/img/jpg/*.jpg',
@@ -148,6 +164,18 @@ const main = {
 						apiOptions: {
 								cssImageRef: "~sprite.png"
 						}
+				}),
+				new HtmlWebpackPlugin({
+					filename: 'Index.html',
+					template: path.resolve(__dirname, 'Views/Home/Index.cshtml'),
+					chunks: ['Home'],
+					inject: false
+				}),
+				new HtmlWebpackPlugin({
+					filename: 'Index.html',
+					template: path.resolve(__dirname, 'Views/Additional/Index.cshtml'),
+					chunks: ['Additional'],
+					inject: false
 				})
 		]
 };
