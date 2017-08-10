@@ -126,10 +126,11 @@
     <Content Include="Content\img\svg\icon-editor-crop-pink.svg" />
     <Content Include="Content\img\svg\icon-editor-fill-pink.svg" />
     <Content Include="Content\img\svg\icon-editor-fill.svg" />
+    <Content Include="Content\Service\Additional\additional.css" />
+    <Content Include="Content\Service\Additional\additional.js" />
     <Content Include="Content\Service\home\home.css" />
     <Content Include="Content\Service\home\home.js" />
     <Content Include="Global.asax" />
-    <Content Include="gulpfile.js" />
     <Content Include="postcss.config.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -139,6 +140,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdditionalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,8 +158,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include=".stylelintrc" />
     <Content Include="package-lock.json" />
-    <Content Include=".htmllintrc" />
+    <None Include=".editorconfig" />
+    <Content Include="postcss-sorting.config.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Additional\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

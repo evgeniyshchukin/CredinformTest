@@ -1,6 +1,7 @@
 ﻿/// <binding ProjectOpened='Watch - Development, Run - Production, Run - Development' /> 
 
 'use strict';
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const
 		path = require('path'),
 		webpack = require('webpack'),
@@ -15,6 +16,7 @@ const
 		SpritesmithPlugin = require('webpack-spritesmith'),
 		ExtractTextPlugin = require('extract-text-webpack-plugin'),
 		environment = process.env.NODE_ENV,
+		HtmlWebpackPlugin = require('html-webpack-plugin'),
 		addresses = {
 				libraries: {
 						JS: [
@@ -38,6 +40,10 @@ const
 				home: {
 						JS: './home/home.js',
 						CSS: './home/home.css'
+				},
+				additional: {
+					JS: './additional/additional.js',
+					CSS: './additional/additional.css'
 				}
 		};
 
@@ -64,61 +70,64 @@ switch (environment) {
 const main = {
 		context: path.resolve(__dirname, 'Content/Service'),
 		entry: {
-            home: addresses.home.JS
+			home: addresses.home.JS,
+			additional: addresses.additional.JS
 		},
 		output: {
 				path: path.resolve(__dirname, ''),
-                filename: 'Scripts/[name].js'
-           
+				filename: 'Scripts/[name].js',
+				publicPath: ''
 		},
 		module: {
-            rules: [
-                {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract(
-                        {
-                            fallback: 'style-loader',
-                            use: [
-                                {
-                                loader: 'css-loader', 
-                                options: { importLoaders: 1, minimize: true}
-                            },
-                                'postcss-loader']
-                        }
-                    )
-                },
+				rules: [
+						{
+								test: /\.css$/,
+								use: ExtractTextPlugin.extract(
+										{
+												fallback: 'style-loader',
+												use: [{
+														loader: 'css-loader',
+														options: {importLoaders: 1}
+												},
+														'postcss-loader']
+										}
+								)
+						},
+						{
+								test: /\.(gif|png|jpe?g|svg)$/i,
+								loaders: [
+										'file-loader',
+										{
+												loader: 'image-webpack-loader',
+												query: {
+														progressive: true,           
+														optimizationLevel: 3,
+														pngquant: {
+																quality: '65-90',
+																speed: 4
+														}
+												}
 
-                {
-                    test: /\.(png|jpg|gif)$/i,
-                    loaders: [
-                        'file-loader?name =i/[hash].[ext]',
-                        {
-                            loader: 'image-webpack-loader',
-                            query: {
-                                progressive: true,
-                                optimizationLevel: 3
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.(htm|html|cshtml)$/i,
-                    loader: "htmllint-loader",
-                    include: '/Views/',
-                    query: {
-                        config: '.htmllintrc',
-                        failOnError: true,
-                        failOnWarning: true
-                    }
-                },
-                {
-                    test: /\.svg$/,
-                    loader: 'webpack-svg-sprite-plugin'
-                    
-                    }
-                
-                            
-		]},
+										}
+								]
+
+						},
+						{
+								test: /\.png$/, loaders: [
+										'file-loader?name=i/[hash].[ext]'
+								]
+						},
+						{
+							test: /\.svg$/,
+							loader: 'svg-sprite-loader',
+							include: path.resolve(__dirname, 'Content/img/svg'),
+							options: {
+								extract: true,
+								spriteFilename: 'sprite.svg'
+							}
+						}  
+				]
+		},
 		watch: true,
 		watchOptions: {
 				aggregateTimeout: 300

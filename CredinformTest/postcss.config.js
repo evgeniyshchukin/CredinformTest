@@ -1,28 +1,32 @@
-﻿module.exports = {
-    plugins: {
-                'stylelint': {
-                    failAfterError: true
-                },      
-                'postcss-import': {},
-                'postcss-simple-vars': {},	
-                'css-mqpacker': {},
-                postcss-data - packer
-                'postcss-cssnext': {
-                    browsers: ['last 2 versions', '> 5%']
-                },
-                'cssnano': {
-                    "preset": [
-                        "default",
-                        {
-                            "discardComments": {
-                                "removeAll": true
-                            }
-                        }
-                    ]
-                },
-                'postcss-normalize': {
-                    browsers: ['last 2 versions']
-                },
-				'precss': {}
-		}
+﻿const sortingConfig = require('./postcss-sorting.config.js');
+
+module.exports = {
+	plugins: {
+		'stylelint': {
+			failAfterError: true
+		},
+		'postcss-import': {},
+		'postcss-simple-vars': {},
+		'css-mqpacker': {},
+		'postcss-normalize': {
+			browsers: ['last 2 versions']
+		},
+		'postcss-cssnext': {
+			browsers: ['last 2 versions', '> 5%']
+		},
+		'postcss-sorting': {
+			"properties-order": sortingConfig
+		},
+		'cssnano': {
+			"preset": [
+				"default",
+				{
+					"discardComments": {
+						"removeAll": true
+					}
+				}
+			]
+		},
+		'precss': {},
+	}
 };
