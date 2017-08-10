@@ -1,5 +1,4 @@
 ﻿@import "../../Common/colors.css";
-@import-normalize;
 
 @import-normalize;
 
@@ -38,4 +37,5 @@
 
 	color: $color-gray--darkest;
 }
-/*Это комментаррий*/
+
+/* Это комментаррий */

@@ -81,7 +81,7 @@ console.log(`You're God damn right.`);
 /* 1 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: SyntaxError: Unexpected token -\n    at exports.runInThisContext (vm.js:53:16)\n    at Module._compile (module.js:373:25)\n    at requireFromString (C:\\Users\\a.beliaeva\\Documents\\GitHub\\CredinformTest\\CredinformTest\\node_modules\\require-from-string\\index.js:27:4)\n    at C:\\Users\\a.beliaeva\\Documents\\GitHub\\CredinformTest\\CredinformTest\\node_modules\\cosmiconfig\\lib\\loadJs.js:11:15\n    at C:\\Users\\a.beliaeva\\AppData\\Roaming\\npm\\node_modules\\webpack\\lib\\NormalModule.js:194:19\n    at C:\\Users\\a.beliaeva\\AppData\\Roaming\\npm\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\Users\\a.beliaeva\\AppData\\Roaming\\npm\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\Users\\a.beliaeva\\AppData\\Roaming\\npm\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\Users\\a.beliaeva\\Documents\\GitHub\\CredinformTest\\CredinformTest\\node_modules\\postcss-loader\\lib\\index.js:176:71");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
