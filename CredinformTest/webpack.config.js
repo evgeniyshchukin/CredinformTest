@@ -7,11 +7,10 @@ const
 		webpack = require('webpack'),
 		BrowserSync = require('browser-sync-webpack-plugin'),
 		merge = require('webpack-merge'),
-		PostCss = require('postcss-loader'), 
-        SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
-        //SvgSpritePlugin = require('svg-sprite-loader/plugin'),
-        ImageLoader = require('image-webpack-loader'),
-        RemoveWebpackPlugin = require('remove-webpack-plugin'),
+		PostCss = require('postcss-loader'),
+		SvgSpritePlugin = require('webpack-svg-sprite-plugin'),
+		//ImageminPlugin = require('imagemin-webpack-plugin'),
+		ImageLoader = require('image-webpack-loader'),
 		CopyWebpackPlugin = require('copy-webpack-plugin'),
 		SpritesmithPlugin = require('webpack-spritesmith'),
 		ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -133,56 +132,50 @@ const main = {
 				aggregateTimeout: 300
 		},
 
-        plugins: [
-            new BrowserSync({
-                host: '192.168.1.177',
-                port: 8082,
-                proxy: 'http://192.168.1.177:8082/'
-            }),
-            new ExtractTextPlugin({
-                    
-                    filename: (getPath) => {
-                        return getPath('Styles/[name].css');
-                    },
-                    allChunks: true       
-	            }),	 
-                new RemoveWebpackPlugin('./Fonts/'),
+		plugins: [
+				new BrowserSync({
+						host: '192.168.1.177',
+						port: 8082,
+						proxy: 'http://192.168.1.177:8082/'
+				}),
+				new ExtractTextPlugin({
+						filename: (getPath) => {
+								return getPath('Styles/[name].css');
+						},
+						allChunks: true
+				}),
+				new CopyWebpackPlugin([
+						{
+								from: '/Content/img/jpg/*.jpg',
+								to: '/Images/jpg/*.jpg',
+								toType: 'dir'
+						}
+						
+				]),
 				new SpritesmithPlugin({
 						src: {
-								cwd: path.resolve(__dirname, 'Content/img/png/sprite'),
+								cwd: path.resolve(__dirname, 'Content/img/png'),
 								glob: '**/*.png'
 						},
 						target: {
-								image: path.resolve(__dirname, 'Images/png/sprite/sprite.png'),
-                                css: path.resolve(__dirname, 'Images/png/sprite/sprite.css')
+								image: path.resolve(__dirname, 'Images/png/sprite.png'),
+								css: path.resolve(__dirname, 'Images/png/sprite.css')
 						},
 						apiOptions: {
 								cssImageRef: "~sprite.png"
 						}
-                }),
-                new CopyWebpackPlugin([
-                    {
-                        from: path.resolve(__dirname, 'Content/img/jpg/*.jpg'),
-                        to: path.resolve(__dirname, 'Images/jpg/[name].jpg')
-
-                    },
-                    {
-                        from: path.resolve(__dirname, 'Content/img/png/*.png'),
-                        to: path.resolve(__dirname, 'Images/png/[name].png')
-
-                    },
-                    {
-                        from: path.resolve(__dirname, 'Content/img/svg/*.svg'),
-                        to: path.resolve(__dirname, 'Images/svg/[name].svg')
-
-                    }
-
-                ]),
-                new SvgSpritePlugin({
-                    from: path.resolve(__dirname, 'Images/svg/'),                          
-                    filename: 'Images/svg/sprite.svg'
-                    
-                })
-        ]
-
+				}),
+				new HtmlWebpackPlugin({
+					filename: 'Index.html',
+					template: path.resolve(__dirname, 'Views/Home/Index.cshtml'),
+					chunks: ['Home'],
+					inject: false
+				}),
+				new HtmlWebpackPlugin({
+					filename: 'Index.html',
+					template: path.resolve(__dirname, 'Views/Additional/Index.cshtml'),
+					chunks: ['Additional'],
+					inject: false
+				})
+		]
 };

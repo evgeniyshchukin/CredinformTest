@@ -1,6 +1,25 @@
-﻿/*Основные цвета*/
-$color-white: #ffffff; $color-white--dark: #f9f9f9; $color-gray--lightest: #f1f1f1; $color-gray--lighten: #e4e4e4; $color-gray--light: #dbdbdb; $color-gray: #c3c3c3; $color-gray--dark: #aeaeae; $color-gray--darken: #7d7d7d; $color-gray--darkest: #535353;
-/*Цвета элементов*/
-$color-red: #ed3030; $color-red--dark: #990000; $color-orange: #ffa500; $color-yellow: #f6ff00; $color-green--light: #2cb05d; $color-green: #0fa100; $color-blue: #00a4e4; $color-blue--dark: #467bc1; $color-purple: #7832af;
-/*Прозрачность*/
-$color-white--03: rgba(255, 255, 255, 0.3); $color-gray--dark-05: rgba(170, 170, 170, 0.5); $color-gray--darkest-03: rgba(83, 83, 83, 0.3); $color-blue--05: rgba(0, 164, 228, 0.5);
+﻿/* Основные цвета */
+$color-white: #ffffff; 
+$color-white--dark: #f9f9f9; 
+$color-gray--lightest: #f1f1f1; 
+$color-gray--lighten: #e4e4e4; 
+$color-gray--light: #dbdbdb; 
+$color-gray: #c3c3c3; 
+$color-gray--dark: #aeaeae; 
+$color-gray--darken: #7d7d7d; 
+$color-gray--darkest: #535353; 
+
+$color-red: #ed3030; 
+$color-red--dark: #990000; 
+$color-orange: #ffa500; 
+$color-yellow: #f6ff00; 
+$color-green--light: #2cb05d; 
+$color-green: #0fa100; 
+$color-blue: #00a4e4; 
+$color-blue--dark: #467bc1; 
+$color-purple: #7832af;
+
+$color-white--03: rgba(255, 255, 255, 0.3); 
+$color-gray--dark-05: rgba(170, 170, 170, 0.5); 
+$color-gray--darkest-03: rgba(83, 83, 83, 0.3); 
+$color-blue--05: rgba(0, 164, 228, 0.5);
