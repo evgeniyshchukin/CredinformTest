@@ -159,6 +159,8 @@
     <Content Include=".stylelintrc" />
     <None Include=".editorconfig" />
     <Content Include="postcss-sorting.config.js" />
+    <Content Include=".htmllintrc" />
+    <Content Include=".eslintrc" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Additional\Index.cshtml" />
     <None Include="Web.Debug.config">
@@ -182,7 +184,6 @@
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
     <Folder Include="Styles\" />
-    <Folder Include="Webpack\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
