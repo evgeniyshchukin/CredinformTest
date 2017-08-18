@@ -8,12 +8,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>@ViewBag.Title</title>
-		@Scripts.Render(
-			"~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "JS"
-		)
-		@Styles.Render(
-			"~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "CSS"
-		)
 </head>
 <body>
 	<header>
@@ -55,7 +49,7 @@
 								</select>
 							</div>
 							<div>
-								<button type="submit">Поиск</button>
+								<button type="submit" class="button" id="button">Поиск</button>
 							</div>
 						</div>
 					</form>
@@ -81,7 +75,7 @@
 						<li>Помощь</li>
 						<li>Выход</li>
 					</ul>
-                    <button>Кнопка</button>
+                    <button class="button">Кнопка</button>
 				</div>
 			</section>
 		</section>		
@@ -92,7 +86,12 @@
 	<footer>
 		<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
 	</footer>
-
+  @Scripts.Render(
+      "~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "JS"
+    )
+  @Styles.Render(
+      "~/bundles/" + Html.ViewContext.RouteData.Values["controller"] + "/" + Path.GetFileNameWithoutExtension((ViewContext.View as RazorView).ViewPath) + "CSS"
+    )
 </body>
 </html>
 

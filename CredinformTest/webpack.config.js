@@ -91,7 +91,8 @@ const main = {
 			new BrowserSync({
 				host: '192.168.1.177',
 				port: 8082,
-				proxy: 'http://192.168.1.177:8082/'
+				proxy: 'http://192.168.1.177:8082/',
+				files: [path.resolve(__dirname, 'Views/Home/Index.cshtml')]
 			}),
 			new ExtractTextPlugin({
 				filename: (getPath) => {
@@ -131,18 +132,6 @@ const main = {
 				compressor: {
 					warnings: false
 				}
-			}),
-			new HtmlWebpackPlugin({
-				filename: 'Index.html',
-				template: path.resolve(__dirname, 'Views/Home/Index.cshtml'),
-				chunks: ['Home'],
-				inject: false
-			}),
-			new HtmlWebpackPlugin({
-				filename: 'Index.html',
-				template: path.resolve(__dirname, 'Views/Additional/Index.cshtml'),
-				chunks: ['Additional'],
-				inject: false
 			})
 		],
 		module: {
@@ -153,21 +142,21 @@ const main = {
 					use: {
 						loader: 'babel-loader',
 						options: {
-							presets: ['env'],
+							presets: ['react', 'env'],
 							plugins: [require('babel-plugin-transform-object-rest-spread')]
 						}
 					}
 				},
-				//{
-				//	test: /\.(htm|html|cshtml)$/i,
-				//	loader: "htmllint-loader",
-				//	include: path.resolve(__dirname, 'Views'),
-				//	query: {
-				//		config: '.htmllintrc',
-				//		failOnError: false,
-				//		failOnWarning: true
-				//	}
-				//},
+				{
+					test: /\.(htm|html|cshtml)$/,
+					loader: "htmllint-loader",
+					include: path.resolve(__dirname, 'Views'),
+					query: {
+						config: path.resolve(__dirname, '.htmllintrc'),
+						failOnError: false,
+						failOnWarning: false
+					}
+				},
 				{
 						test: /\.css$/,
 						use: ExtractTextPlugin.extract(
