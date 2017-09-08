@@ -1,42 +1,32 @@
-﻿@import "../../Common/colors.css";
+/*@import "../../Common/colors.css";*/
+/*@import-normalize;*/
 
-@import-normalize;
-
-.saf {
-	display: flex;
-
-	color: $color-gray--darkest;
+.aaa {
+    background-color: blue;
 }
 
-/* выфафы */
-.aaa {
-	color: $color-gray--darkest;
+/*.saf { display: flex; color: $color-gray--darkest; }
 
-	& .bbb {
-		border-bottom: 1px;
-
-		& .cc {
-			width: 100rem;
-			width: 100px;
-			width: calc(2px + 4px);
-
-			transition: 500s;
-		}
-	}
+.aaa { color: $color-gray--darkest; & .bbb
+{ border-bottom: 1px; & .cc
+{ width: 100rem; width: 100px; width: calc(2px + 4px); transition: 500s; }
+}
 }
 
 .xxx,
-.yyy .zzz {
-	width: calc(2px + 4px);
+.yyy .zzz { width: calc(2px + 4px); background-image: url("http://www.asdf.com"); -webkit-transition: background-color 0.2s; -o-transition: background-color 0.2s; transition: background-color 0.2s !important; }
 
-	background-image: url("http://www.asdf.com");
+.eee { display: flex; color: $color-gray--darkest; content: ""; clip: rect(); width: 20px; }
+
+.ccc {
+    background-color: blue !important;
 }
 
-.eee {
-	display: flex;
+h1 {
 
-	color: $color-gray--darkest;
-}
+}*/
+
+
 
 /* Это комментаррий */
 

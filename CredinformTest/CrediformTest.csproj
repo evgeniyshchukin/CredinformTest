@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -164,9 +165,10 @@
     <Content Include="Content\img\svg\icon-editor-fill.svg" />
     <Content Include="Content\Service\Additional\additional.css" />
     <Content Include="Content\Service\Additional\additional.js" />
-    <Content Include="Content\Service\home\Components\component.js" />
-    <Content Include="Content\Service\home\home.css" />
-    <Content Include="Content\Service\home\home.js" />
+    <Content Include="Content\Service\Home\Components\component.js" />
+    <Content Include="Content\Service\Home\Components\module.js" />
+    <Content Include="Content\Service\Home\home.css" />
+    <Content Include="Content\Service\Home\home.js" />
     <Content Include="Global.asax" />
     <Content Include="postcss.config.js" />
     <Content Include="Web.config">
